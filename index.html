@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>toca. — Tu presencia digital, en un toque</title>
+<meta name="description" content="Tarjetas digitales y portafolios digitales con diseño premium. Sublimadas, termolaminadas. Nunca más imprimas tarjetas que se pierden.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0020;
+  --bg-2:#1a0040;
+  --bg-3:#2d0060;
+  --purple:#6B21D6;
+  --purple-light:#c084fc;
+  --lavender:#e9d5ff;
+  --mist:#f9f6ff;
+  --text:#f9f6ff;
+  --text-muted:rgba(249,246,255,0.6);
+  --text-dim:rgba(249,246,255,0.4);
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(13,0,32,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:500;letter-spacing:-0.5px}
+.logo-mark{width:28px;height:28px;position:relative;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:100%;height:100%}
+.logo-dot{color:var(--purple-light)}
+.nav-btn{padding:10px 20px;border-radius:10px;background:var(--purple);color:#fff;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:background 0.2s}
+.nav-btn:hover{background:#5b1cb8}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-orb1{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.35) 0%,transparent 70%);top:-150px;left:-150px;pointer-events:none}
+.hero-orb2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(192,132,252,0.25) 0%,transparent 70%);bottom:-100px;right:-100px;pointer-events:none}
+.hero-content{max-width:900px;text-align:center;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:20px;background:rgba(192,132,252,0.12);border:1px solid rgba(192,132,252,0.3);font-size:12px;color:var(--purple-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:1.75rem}
+.hero-badge span{width:6px;height:6px;border-radius:50%;background:#00ff88;box-shadow:0 0 10px #00ff88}
+.hero h1{font-size:clamp(42px,7vw,78px);font-weight:500;letter-spacing:-2px;line-height:1.05;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--purple-light) 0%,#f0abfc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--text-muted);max-width:600px;margin:0 auto 2.5rem;line-height:1.6}
+.hero-cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-primary{padding:14px 28px;border-radius:12px;background:linear-gradient(135deg,var(--purple),#8b5cf6);color:#fff;font-size:15px;font-weight:500;cursor:pointer;border:none;transition:transform 0.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-secondary{padding:14px 28px;border-radius:12px;background:rgba(255,255,255,0.06);color:#fff;font-size:15px;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,0.15);transition:background 0.2s}
+.btn-secondary:hover{background:rgba(255,255,255,0.1)}
+
+/* DEMO CARD */
+.hero-demo{margin-top:4rem;position:relative;display:flex;justify-content:center}
+.phone{width:280px;background:#000;border-radius:36px;padding:12px;border:3px solid #333;box-shadow:0 30px 80px rgba(107,33,214,0.4),0 0 0 1px rgba(255,255,255,0.1)}
+.phone-screen{background:linear-gradient(135deg,#0d0020,#1a0040);border-radius:24px;overflow:hidden;min-height:500px;position:relative}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100px;height:22px;background:#000;border-radius:0 0 14px 14px;z-index:3}
+.phone-content{padding:40px 20px 24px;position:relative}
+.phone-orb{position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.5) 0%,transparent 70%);top:-20px;right:-30px}
+.phone-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:16px;position:relative;z-index:2}
+.phone-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:#fff;margin-bottom:10px;border:1.5px solid rgba(167,139,250,0.4)}
+.phone-name{font-size:16px;font-weight:500;color:#fff;margin-bottom:2px}
+.phone-role{font-size:11px;color:var(--purple-light);margin-bottom:12px}
+.phone-btn{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:9px;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;font-size:11px;margin-bottom:6px}
+.phone-btn2{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:9px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);font-size:11px;margin-bottom:6px}
+.phone-icon{width:20px;height:20px;border-radius:5px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:10px}
+.phone-save{margin-top:10px;padding:10px;border-radius:9px;border:1px solid rgba(192,132,252,0.4);color:var(--purple-light);font-size:11px;text-align:center}
+
+/* SECTIONS */
+section{padding:6rem 2rem;position:relative}
+.container{max-width:1200px;margin:0 auto}
+.section-label{display:inline-block;font-size:11px;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem;font-weight:500}
+.section-title{font-size:clamp(32px,5vw,52px);font-weight:500;letter-spacing:-1.5px;line-height:1.1;margin-bottom:1rem}
+.section-title em{font-style:normal;color:var(--purple-light)}
+.section-sub{font-size:17px;color:var(--text-muted);max-width:600px;line-height:1.6;margin-bottom:3rem}
+
+/* COMO FUNCIONA */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:3rem}
+.step{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2rem;position:relative;transition:all 0.3s}
+.step:hover{border-color:rgba(192,132,252,0.3);transform:translateY(-4px)}
+.step-num{font-size:44px;font-weight:300;color:var(--purple-light);opacity:0.3;line-height:1;margin-bottom:1rem}
+.step h3{font-size:20px;font-weight:500;margin-bottom:0.75rem;letter-spacing:-0.3px}
+.step p{font-size:14px;color:var(--text-muted);line-height:1.6}
+
+/* BENEFICIOS */
+.benefits{background:linear-gradient(180deg,transparent 0%,rgba(107, 33, 214, 0.08) 50%,transparent 100%)}
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:3rem}
+.benefit{display:flex;gap:16px;padding:1.5rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px}
+.benefit-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--purple),#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.benefit h4{font-size:15px;font-weight:500;margin-bottom:4px}
+.benefit p{font-size:13px;color:var(--text-muted);line-height:1.5}
+
+/* ESTILOS PREVIEW */
+.styles-intro{text-align:center;margin-bottom:3rem}
+.styles-intro .section-title,.styles-intro .section-sub{margin-left:auto;margin-right:auto}
+.styles-intro .section-sub{margin-bottom:0}
+.styles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+.style-card{aspect-ratio:3/4;border-radius:16px;overflow:hidden;position:relative;cursor:pointer;border:1px solid rgba(255,255,255,0.08);transition:all 0.3s;display:flex;align-items:flex-end;padding:1rem}
+.style-card:hover{transform:translateY(-4px);border-color:var(--purple-light)}
+.style-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.75));pointer-events:none}
+.style-num{position:absolute;top:12px;left:14px;font-size:10px;letter-spacing:2px;z-index:2;opacity:0.7}
+.style-label{position:relative;z-index:2;font-size:13px;font-weight:500}
+.s1{background:linear-gradient(135deg,#0d0020,#2d0060)}
+.s2{background:#f7f500;color:#000}
+.s3{background:#fafaf8;color:#1a1a1a}
+.s4{background:linear-gradient(160deg,#0a0a2e,#1a0a3e)}
+.s5{background:linear-gradient(160deg,#1c0f00,#3d1f00)}
+.s6{background:#1e3a8a}
+.s7{background:#f5f0e8;color:#1a1a1a}
+.s8{background:linear-gradient(135deg,#fef3f7,#e0e7ff);color:#3730a3}
+.s9{background:#0a0a0a;color:#00ff41;font-family:monospace}
+.s10{background:#0f0f0f;color:#d4af37}
+.s11{background:#fef3f7;color:#1a1a1a}
+.s12{background:linear-gradient(135deg,#4c1d95,#ec4899)}
+.s2 .style-num,.s3 .style-num,.s7 .style-num,.s8 .style-num,.s11 .style-num{color:rgba(0,0,0,0.5)}
+.styles-toggle{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;background:rgba(192,132,252,0.12);border:1px solid rgba(192,132,252,0.3);color:var(--purple-light);font-size:14px;font-weight:500;cursor:pointer;margin-top:1.5rem;transition:all 0.2s}
+.styles-toggle:hover{background:rgba(192,132,252,0.2)}
+.styles-cta{text-align:center;margin-top:3rem}
+
+/* PRECIOS */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:3rem}
+.price-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:2rem 1.5rem;text-align:center;transition:all 0.3s;position:relative}
+.price-card:hover{border-color:rgba(192,132,252,0.4);transform:translateY(-4px)}
+.price-card.featured{border:1.5px solid var(--purple);background:linear-gradient(180deg,rgba(107,33,214,0.15),rgba(107,33,214,0.05))}
+.price-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:10px;padding:4px 12px;border-radius:20px;font-weight:500;letter-spacing:1px;text-transform:uppercase}
+.price-range{font-size:12px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+.price-num{font-size:42px;font-weight:500;letter-spacing:-1.5px;margin-bottom:2px;line-height:1}
+.price-num .currency{font-size:20px;color:var(--text-muted);vertical-align:top}
+.price-unit{font-size:12px;color:var(--text-dim);margin-bottom:1.5rem}
+.price-features{list-style:none;text-align:left;font-size:13px;color:var(--text-muted);line-height:2}
+.price-features li::before{content:'✓';color:var(--purple-light);margin-right:10px;font-weight:500}
+
+/* FAQ */
+.faq-item{border-bottom:0.5px solid rgba(255,255,255,0.1);padding:1.5rem 0;cursor:pointer}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:500}
+.faq-q::after{content:'+';font-size:24px;color:var(--purple-light);font-weight:300;transition:transform 0.2s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--text-muted);line-height:1.7;max-height:0;overflow:hidden;transition:max-height 0.3s;margin-top:0}
+.faq-item.open .faq-a{max-height:200px;margin-top:12px}
+
+/* CTA FINAL */
+.cta-final{text-align:center;padding:6rem 2rem;background:linear-gradient(180deg,transparent 0%,rgba(107,33,214,0.12) 100%)}
+.cta-final h2{font-size:clamp(36px,6vw,60px);font-weight:500;letter-spacing:-1.5px;line-height:1.1;margin-bottom:1rem}
+.cta-final h2 em{font-style:normal;color:var(--purple-light)}
+.cta-final p{font-size:17px;color:var(--text-muted);max-width:500px;margin:0 auto 2rem}
+
+/* FOOTER */
+footer{padding:3rem 2rem 2rem;border-top:0.5px solid rgba(255,255,255,0.08);text-align:center}
+.footer-logo{display:inline-flex;align-items:center;gap:10px;font-size:18px;font-weight:500;margin-bottom:1rem}
+.footer-text{font-size:13px;color:var(--text-dim);margin-bottom:8px}
+.footer-copy{font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase}
+
+@media(max-width:640px){
+  nav{padding:1rem 1.25rem}
+  .phone{width:240px}
+  section{padding:4rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="3" fill="#c084fc"></circle>
+        <circle cx="14" cy="14" r="7" fill="none" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="2.5 2"></circle>
+        <circle cx="14" cy="14" r="11" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.4"></circle>
+      </svg>
+    </div>
+    toca<span class="logo-dot">.</span>
+  </div>
+  <a href="#cotizar" class="nav-btn">Cotizar</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span></span>Disponible en Chile</div>
+    <h1>Tu presencia digital,<br><em>en un toque.</em></h1>
+    <p class="hero-sub">Tarjetas digitales y portafolios digitales con diseño premium. Sublimadas, termolaminadas, y conectadas a tu página digital. Nunca más imprimas tarjetas que se pierden.</p>
+    <div class="hero-cta">
+      <a href="#cotizar" class="btn-primary">Cotizar mi tarjeta →</a>
+      <a href="#estilos" class="btn-secondary">Ver estilos</a>
+    </div>
+    <div class="hero-demo">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="phone-notch"></div>
+          <div class="phone-content">
+            <div class="phone-orb"></div>
+            <div class="phone-card">
+              <div class="phone-av">MG</div>
+              <div class="phone-name">María González</div>
+              <div class="phone-role">Diseñadora · Estudio MG</div>
+              <div class="phone-btn"><div class="phone-icon">💬</div>WhatsApp</div>
+              <div class="phone-btn2"><div class="phone-icon">📷</div>Instagram</div>
+              <div class="phone-btn2"><div class="phone-icon">🌐</div>Sitio web</div>
+              <div class="phone-save">Guardar contacto</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-label">Cómo funciona</div>
+    <h2 class="section-title">Una tarjeta. <em>Infinitos contactos.</em></h2>
+    <p class="section-sub">Diseñada para reemplazar tu tarjeta de papel de una vez por todas.</p>
+    <div class="how-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Elige tu estilo</h3>
+        <p>12 diseños únicos que cambian layout, tipografía y personalidad — no solo colores.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Personalizamos tu tarjeta</h3>
+        <p>Sublimamos tu diseño, aplicamos termolaminado brillante y programamos tu tarjeta digital.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Acerca y comparte</h3>
+        <p>Al tocar la tarjeta contra un celular, se abre tu página con todos tus contactos.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Actualiza cuando quieras</h3>
+        <p>Cambiaste de trabajo o número. Actualizamos la página, la tarjeta sigue funcionando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="container">
+    <div class="section-label">Por qué toca.</div>
+    <h2 class="section-title">Más que una tarjeta. <em>Una herramienta.</em></h2>
+    <div class="benefits-grid">
+      <div class="benefit">
+        <div class="benefit-icon">📱</div>
+        <div><h4>Sin app necesaria</h4><p>Funciona en cualquier iPhone o Android. Solo acerca la tarjeta o escanea el código.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">♾️</div>
+        <div><h4>Nunca caduca</h4><p>Pago único, sin suscripciones. Tu página se mantiene viva para siempre.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">✨</div>
+        <div><h4>Diseño premium</h4><p>Sublimada y termolaminada. No es un sticker, es una tarjeta con acabado brillante y durable.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🔄</div>
+        <div><h4>Se actualiza sola</h4><p>Cambias tu info sin reimprimir nada. La tarjeta física sigue siendo la misma.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🌱</div>
+        <div><h4>Amigable con el planeta</h4><p>Una tarjeta reemplaza cientos de tarjetas de papel que terminarían en la basura.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">💼</div>
+        <div><h4>Para empresas también</h4><p>Equipos completos con identidad corporativa unificada y precios por volumen.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="estilos">
+  <div class="container">
+    <div class="styles-intro">
+      <div class="section-label">12 estilos</div>
+      <h2 class="section-title">Encuentra tu <em>personalidad.</em></h2>
+      <p class="section-sub">Desde minimalista japonés hasta retro Y2K. Cada estilo fue diseñado para un tipo específico de profesional o marca.</p>
+      <button class="styles-toggle" onclick="toggleStyles()" id="styles-toggle-btn">Ver los 12 estilos ↓</button>
+    </div>
+    <div class="styles-grid" id="styles-grid" style="display:none;margin-top:2rem;">
+      <div class="style-card s1" data-style="01_dark_glass.html"><span class="style-num">01</span><span class="style-label">Dark Glass</span></div>
+      <div class="style-card s2" data-style="02_neobrutalist.html"><span class="style-num">02</span><span class="style-label" style="color:#000;">Neobrutalist</span></div>
+      <div class="style-card s3" data-style="03_japanese.html"><span class="style-num">03</span><span class="style-label" style="color:#1a1a1a;">Japonés</span></div>
+      <div class="style-card s4" data-style="04_retro_y2k.html"><span class="style-num">04</span><span class="style-label" style="color:#00ffff;">Retro Y2K</span></div>
+      <div class="style-card s5" data-style="05_warm_organic.html"><span class="style-num">05</span><span class="style-label" style="color:#fef3c7;">Warm Organic</span></div>
+      <div class="style-card s6" data-style="06_corporate.html"><span class="style-num">06</span><span class="style-label">Corporate</span></div>
+      <div class="style-card s7" data-style="07_editorial.html"><span class="style-num">07</span><span class="style-label" style="color:#1a1a1a;font-family:Georgia,serif;font-style:italic;">Editorial</span></div>
+      <div class="style-card s8" data-style="08_glass_light.html"><span class="style-num">08</span><span class="style-label" style="color:#3730a3;">Glass Light</span></div>
+      <div class="style-card s9" data-style="09_terminal.html"><span class="style-num">09</span><span class="style-label">&gt; Terminal</span></div>
+      <div class="style-card s10" data-style="10_luxury.html"><span class="style-num">10</span><span class="style-label" style="letter-spacing:2px;text-transform:uppercase;">Luxury</span></div>
+      <div class="style-card s11" data-style="11_playful.html"><span class="style-num">11</span><span class="style-label" style="color:#1a1a1a;font-weight:700;">★ Playful</span></div>
+      <div class="style-card s12" data-style="12_photography.html"><span class="style-num">12</span><span class="style-label">Fotografía</span></div>
+    </div>
+    <div class="styles-cta" id="styles-cta" style="display:none;">
+      <a href="cotizar.html" class="btn-primary">Elegir mi estilo →</a>
+    </div>
+  </div>
+</section>
+
+<section id="precios">
+  <div class="container">
+    <div class="section-label">Precios</div>
+    <h2 class="section-title">Precios <em>transparentes.</em></h2>
+    <p class="section-sub">Mientras más tarjetas, menor el precio por unidad. Ideal para equipos.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-range">1 — 5 tarjetas</div>
+        <div class="price-num"><span class="currency">$</span>19.990</div>
+        <div class="price-unit">c/u · IVA incluido</div>
+        <ul class="price-features">
+          <li>Tarjeta sublimada</li>
+          <li>Termolaminado brillante</li>
+          <li>Portafolio digital premium</li>
+          <li>QR (optativo)</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Más vendido</div>
+        <div class="price-range">6 — 10 tarjetas</div>
+        <div class="price-num"><span class="currency">$</span>17.990</div>
+        <div class="price-unit">c/u · IVA incluido</div>
+        <ul class="price-features">
+          <li>Todo lo del plan anterior</li>
+          <li>Diseño corporativo unificado</li>
+          <li>Entrega coordinada</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-range">11 — 30 tarjetas</div>
+        <div class="price-num"><span class="currency">$</span>16.490</div>
+        <div class="price-unit">c/u · IVA incluido</div>
+        <ul class="price-features">
+          <li>Todo lo anterior</li>
+          <li>Descuento por volumen</li>
+          <li>3 modificaciones incluidas <span style="font-size:11px;opacity:0.6;">(vigencia 3 meses)</span></li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-range">31+ tarjetas</div>
+        <div class="price-num"><span class="currency">$</span>14.990</div>
+        <div class="price-unit">c/u · IVA incluido</div>
+        <ul class="price-features">
+          <li>Todo lo anterior</li>
+          <li>Mejor precio disponible</li>
+          <li>Ideal para empresas</li>
+          <li>Identidad corporativa</li>
+          <li>Asesoría de diseño</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container" style="max-width:800px">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2 class="section-title">¿Dudas? <em>Resueltas.</em></h2>
+    <div style="margin-top:3rem">
+      <div class="faq-item">
+        <div class="faq-q">¿Cómo funciona la tarjeta?</div>
+        <div class="faq-a">Cuando alguien acerca su celular a tu tarjeta, se abre tu portafolio digital en el navegador automáticamente. No necesita app, ni configuración especial. Si prefieres, también incluye un código QR optativo que funciona con la cámara del celular.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Funciona en todos los celulares?</div>
+        <div class="faq-a">Funciona en iPhone desde el modelo 7 y en prácticamente todos los Android modernos. Si el celular no es compatible, la tarjeta incluye un QR optativo que funciona con la cámara.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo cambiar mis datos después?</div>
+        <div class="faq-a">Sí. Actualizamos tu página cuando lo necesites. La tarjeta física sigue siendo la misma. Cambios simples cuestan $3.000, cambios medios $5.000-$8.000. También ofrecemos un pase anual de cambios ilimitados.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto demora la entrega?</div>
+        <div class="faq-a">Entre 3 y 5 días hábiles desde que confirmas el diseño. Envíos a todo Chile por courier.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Tengo que pagar mensualidad?</div>
+        <div class="faq-a">No. El precio es pago único. Tu página digital vive para siempre sin costos adicionales.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Sirve para restaurantes o tiendas?</div>
+        <div class="faq-a">Sí. Tenemos estilos específicos para gastronomía con opciones de carta digital, reservas y ubicación. Consulta con nosotros la configuración que necesitas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cotizar" class="cta-final">
+  <div class="container">
+    <h2>¿Listo para <em>reemplazar</em> tu tarjeta de papel?</h2>
+    <p>Cotiza en menos de 2 minutos. Elige estilo, ingresa tus datos y recibe tu precio final al instante.</p>
+    <a href="cotizar.html" class="btn-primary" style="font-size:16px;padding:16px 32px">Cotizar ahora →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <div class="logo-mark" style="width:24px;height:24px">
+      <svg viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="3" fill="#c084fc"></circle>
+        <circle cx="14" cy="14" r="7" fill="none" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="2.5 2"></circle>
+        <circle cx="14" cy="14" r="11" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.4"></circle>
+      </svg>
+    </div>
+    toca<span class="logo-dot">.</span>
+  </div>
+  <div class="footer-text">Tu presencia digital, en un toque.</div>
+  <div class="footer-copy">© 2026 toca. · Santiago, Chile</div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.addEventListener('click',()=>item.classList.toggle('open'));
+});
+document.querySelectorAll('.style-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const style = card.getAttribute('data-style');
+    window.location.href='cotizar.html?style=' + style;
+  });
+});
+function toggleStyles(){
+  const grid=document.getElementById('styles-grid');
+  const cta=document.getElementById('styles-cta');
+  const btn=document.getElementById('styles-toggle-btn');
+  const isOpen=grid.style.display!=='none';
+  grid.style.display=isOpen?'none':'grid';
+  cta.style.display=isOpen?'none':'block';
+  btn.textContent=isOpen?'Ver los 12 estilos ↓':'Ocultar estilos ↑';
+}
+</script>
+
+</body></html>
