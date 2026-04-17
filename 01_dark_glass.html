@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>María González — toca.</title>
+<style>
+:root {
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --accent: #c084fc;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, system-ui, sans-serif;
+  background: #0d0020;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(107, 33, 214, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.15) 0%, transparent 40%);
+}
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 32px;
+  padding: 40px 24px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  border: 4px solid rgba(255,255,255,0.1);
+}
+h1 { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+p.role { color: var(--accent); font-size: 14px; margin-bottom: 30px; letter-spacing: 1px; text-transform: uppercase; }
+
+.links { display: flex; flex-direction: column; gap: 12px; }
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.link-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+.link-btn i { font-style: normal; font-size: 18px; }
+
+.save-btn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 18px;
+  background: #fff;
+  color: #0d0020;
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+}
+
+.powered {
+  margin-top: 40px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.powered span { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="avatar">MG</div>
+  <h1>María González</h1>
+  <p class="role">Diseñadora de Interiores</p>
+
+  <div class="links">
+    <a href="#" class="link-btn">
+      <span>💬 WhatsApp</span>
+      <i>→</i>
+    </a>
+    <a href="#" class="link-btn">
+      <span>📷 Instagram</span>
+      <i>→</i>
+    </a>
+    <a href="#" class="link-btn">
+      <span>🌐 Sitio Web</span>
+      <i>→</i>
+    </a>
+    <a href="#" class="link-btn">
+      <span>✉️ Correo</span>
+      <i>→</i>
+    </a>
+  </div>
+
+  <button class="save-btn" onclick="downloadVCard()">Guardar Contacto</button>
+
+  <div class="powered">powered by <span>toca.</span></div>
+</div>
+
+<script>
+function downloadVCard() {
+  const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:María González
+ORG:Estudio MG
+TITLE:Diseñadora de Interiores
+TEL;TYPE=CELL:+56912345678
+URL:https://toca.cl
+END:VCARD`;
+  const blob = new Blob([vcard], { type: 'text/vcard' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Maria_Gonzalez.vcf';
+  a.click();
+}
+</script>
+
+</body></html>
