@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo Japonés — toca.</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #fafaf8;
+  color: #1a1a1a;
+  font-family: 'Georgia', serif;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh;
+  padding: 30px;
+}
+.card {
+  width: 100%; max-width: 350px;
+  text-align: center;
+}
+.seal {
+  width: 50px; height: 50px;
+  background: #bc002d;
+  margin: 0 auto 30px;
+  border-radius: 2px;
+}
+h1 { font-family: sans-serif; font-weight: 300; letter-spacing: 4px; font-size: 20px; text-transform: uppercase; margin-bottom: 8px; }
+.role { font-style: italic; color: #666; font-size: 14px; margin-bottom: 40px; }
+.links { display: flex; flex-direction: column; gap: 20px; }
+.link-item {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  transition: opacity 0.2s;
+}
+.link-item:hover { opacity: 0.5; }
+.save-btn {
+  margin-top: 50px;
+  background: none;
+  border: 1px solid #1a1a1a;
+  padding: 12px 30px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.footer { margin-top: 40px; font-family: sans-serif; font-size: 9px; letter-spacing: 3px; opacity: 0.4; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="seal"></div>
+  <h1>Kenzo Tanaka</h1>
+  <p class="role">Consultoría Estratégica</p>
+  <div class="links">
+    <a href="#" class="link-item">LinkedIn</a>
+    <a href="#" class="link-item">Sitio Web</a>
+    <a href="#" class="link-item">E-mail</a>
+  </div>
+  <button class="save-btn">Añadir contacto</button>
+  <div class="footer">TOCA. MINIMALISM</div>
+</div>
+</body></html>
