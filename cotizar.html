@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizar — toca.</title>
+<style>
+:root{
+  --bg:#0d0020;
+  --bg-2:#1a0040;
+  --bg-3:#2d0060;
+  --purple:#6B21D6;
+  --purple-light:#c084fc;
+  --text:#f9f6ff;
+  --text-muted:rgba(249,246,255,0.6);
+  --border:rgba(255,255,255,0.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{padding:1.25rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(13,0,32,0.7);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:500;text-decoration:none;color:inherit}
+.logo-mark{width:24px;height:24px}
+.logo-dot{color:var(--purple-light)}
+
+/* PROGRESS BAR */
+.progress-container{max-width:600px;margin:2rem auto;padding:0 1.5rem}
+.progress-bar{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;display:flex;overflow:hidden}
+.progress-fill{height:100%;background:var(--purple);width:25%;transition:width 0.4s ease}
+.steps-labels{display:flex;justify-content:space-between;margin-top:10px;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)}
+
+/* FORM CONTAINER */
+.form-container{max-width:600px;margin:0 auto 4rem;padding:0 1.5rem}
+.step-content{display:none}
+.step-content.active{display:block;animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)}}
+
+h2{font-size:28px;font-weight:500;margin-bottom:0.5rem;letter-spacing:-1px}
+p.step-desc{color:var(--text-muted);font-size:15px;margin-bottom:2rem}
+
+/* STYLES GRID */
+.styles-selector{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.style-option{border:1.5px solid var(--border);border-radius:16px;padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;position:relative}
+.style-option:hover{border-color:rgba(192,132,252,0.4)}
+.style-option.selected{border-color:var(--purple-light);background:rgba(107,33,214,0.1)}
+.style-preview{height:100px;border-radius:8px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500}
+.style-name{font-size:13px;display:block}
+
+/* INPUTS */
+.input-group{margin-bottom:1.5rem}
+label{display:block;font-size:13px;color:var(--text-muted);margin-bottom:6px;font-weight:500}
+input,select,textarea{width:100%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:#fff;font-size:15px;outline:none;transition:border-color 0.2s}
+input:focus{border-color:var(--purple-light)}
+.input-hint{font-size:11px;color:var(--text-dim);margin-top:4px}
+
+/* QUANTITY SELECTOR */
+.qty-selector{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,0.05);padding:20px;border-radius:16px;border:1px solid var(--border)}
+.qty-btn{width:44px;height:44px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.1);color:#fff;font-size:20px;cursor:pointer}
+.qty-num{font-size:24px;font-weight:600;min-width:40px;text-align:center}
+
+/* SUMMARY */
+.summary-card{background:linear-gradient(180deg,rgba(107,33,214,0.15),rgba(107,33,214,0.05));border:1.5px solid var(--purple);border-radius:20px;padding:2rem}
+.summary-row{display:flex;justify-content:space-between;margin-bottom:12px;font-size:15px}
+.total-row{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);font-size:24px;font-weight:600}
+
+/* NAVIGATION BUTTONS */
+.nav-footer{display:flex;gap:12px;margin-top:2rem}
+.btn{padding:16px 24px;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;border:none;flex:1;transition:all 0.2s;text-align:center;text-decoration:none;display:inline-block}
+.btn-primary{background:var(--purple);color:#fff}
+.btn-primary:hover{background:#5b1cb8}
+.btn-secondary{background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid var(--border)}
+.btn-whatsapp{background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px}
+
+@media(max-width:480px){
+  .styles-selector{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-mark"><svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3" fill="#c084fc"></circle><circle cx="14" cy="14" r="7" fill="none" stroke="#c084fc" stroke-width="1.2" stroke-dasharray="2.5 2"></circle></svg></div>
+    toca<span class="logo-dot">.</span>
+  </a>
+</nav>
+
+<div class="progress-container">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="steps-labels">
+    <span>Estilo</span>
+    <span>Datos</span>
+    <span>Cantidad</span>
+    <span>Final</span>
+  </div>
+</div>
+
+<main class="form-container">
+  
+  <!-- PASO 1: ESTILO -->
+  <div class="step-content active" id="step1">
+    <h2>Elige tu estilo</h2>
+    <p class="step-desc">Selecciona la personalidad de tu página digital.</p>
+    <div class="styles-selector" id="stylesGrid">
+      <div class="style-option selected" data-value="Dark Glass" style="--val: #0d0020">
+        <div class="style-preview" style="background:linear-gradient(135deg,#0d0020,#2d0060)">Preview</div>
+        <span class="style-name">Dark Glass</span>
+      </div>
+      <div class="style-option" data-value="Neobrutalist">
+        <div class="style-preview" style="background:#f7f500;color:#000">Preview</div>
+        <span class="style-name">Neobrutalist</span>
+      </div>
+      <div class="style-option" data-value="Japonés">
+        <div class="style-preview" style="background:#fafaf8;color:#1a1a1a">Preview</div>
+        <span class="style-name">Japonés</span>
+      </div>
+      <div class="style-option" data-value="Retro Y2K">
+        <div class="style-preview" style="background:linear-gradient(160deg,#0a0a2e,#1a0a3e)">Preview</div>
+        <span class="style-name">Retro Y2K</span>
+      </div>
+      <div class="style-option" data-value="Warm Organic">
+        <div class="style-preview" style="background:linear-gradient(160deg,#1c0f00,#3d1f00)">Preview</div>
+        <span class="style-name">Warm Organic</span>
+      </div>
+      <div class="style-option" data-value="Luxury">
+        <div class="style-preview" style="background:#0f0f0f;color:#d4af37">Preview</div>
+        <span class="style-name">Luxury</span>
+      </div>
+    </div>
+    <div class="nav-footer">
+      <button class="btn btn-primary" onclick="nextStep()">Continuar →</button>
+    </div>
+  </div>
+
+  <!-- PASO 2: DATOS -->
+  <div class="step-content" id="step2">
+    <h2>Tus datos</h2>
+    <p class="step-desc">Esta información aparecerá en tu tarjeta digital.</p>
+    <div class="input-group">
+      <label>Nombre Completo</label>
+      <input type="text" id="formName" placeholder="Ej: María González">
+    </div>
+    <div class="input-group">
+      <label>Cargo / Profesión</label>
+      <input type="text" id="formRole" placeholder="Ej: Diseñadora de Interiores">
+    </div>
+    <div class="input-group">
+      <label>Empresa (Opcional)</label>
+      <input type="text" id="formCompany" placeholder="Ej: Estudio MG">
+    </div>
+    <div class="input-group">
+      <label>WhatsApp</label>
+      <input type="tel" id="formWhatsapp" placeholder="+56 9 ...">
+    </div>
+    <div class="input-group">
+      <label>Instagram / Otros Links</label>
+      <input type="text" id="formLinks" placeholder="@tuusuario o links">
+    </div>
+    <div class="nav-footer">
+      <button class="btn btn-secondary" onclick="prevStep()">Atrás</button>
+      <button class="btn btn-primary" onclick="nextStep()">Continuar →</button>
+    </div>
+  </div>
+
+  <!-- PASO 3: CANTIDAD -->
+  <div class="step-content" id="step3">
+    <h2>¿Cuántas tarjetas necesitas?</h2>
+    <p class="step-desc">El precio baja automáticamente según el volumen.</p>
+    <div class="qty-selector">
+      <button class="qty-btn" onclick="updateQty(-1)">-</button>
+      <div class="qty-num" id="qtyVal">1</div>
+      <button class="qty-btn" onclick="updateQty(1)">+</button>
+    </div>
+    <div style="margin-top:20px">
+      <div class="summary-row" style="color:var(--purple-light); font-weight:500;">
+        <span id="priceTierLabel">Precio unitario: $19.990</span>
+      </div>
+    </div>
+    <div class="nav-footer">
+      <button class="btn btn-secondary" onclick="prevStep()">Atrás</button>
+      <button class="btn btn-primary" onclick="nextStep()">Ver resumen →</button>
+    </div>
+  </div>
+
+  <!-- PASO 4: FINAL -->
+  <div class="step-content" id="step4">
+    <h2>Resumen de tu pedido</h2>
+    <p class="step-desc">Revisa que todo esté correcto antes de enviar.</p>
+    <div class="summary-card">
+      <div class="summary-row"><span>Estilo elegido:</span><span id="sumStyle">Dark Glass</span></div>
+      <div class="summary-row"><span>Nombre:</span><span id="sumName">-</span></div>
+      <div class="summary-row"><span>Cantidad:</span><span id="sumQty">1 tarjeta</span></div>
+      <div class="total-row"><span>Total:</span><span id="sumTotal">$19.990</span></div>
+    </div>
+    <div class="nav-footer">
+      <button class="btn btn-secondary" onclick="prevStep()">Atrás</button>
+      <a href="#" class="btn btn-whatsapp" id="whatsappBtn">
+        Cotizar por WhatsApp
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<script>
+let currentStep = 1;
+let selectedStyle = "Dark Glass";
+let quantity = 1;
+
+// Selección de estilo
+document.querySelectorAll('.style-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.style-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    selectedStyle = opt.dataset.value;
+  });
+});
+
+function updateProgress() {
+  const progress = ((currentStep - 1) / 3) * 100 + 25;
+  document.getElementById('progressFill').style.width = Math.min(progress, 100) + '%';
+}
+
+function nextStep() {
+  if(currentStep < 4) {
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    currentStep++;
+    document.getElementById(`step${currentStep}`).classList.add('active');
+    updateProgress();
+    if(currentStep === 4) updateSummary();
+  }
+}
+
+function prevStep() {
+  if(currentStep > 1) {
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    currentStep--;
+    document.getElementById(`step${currentStep}`).classList.add('active');
+    updateProgress();
+  }
+}
+
+function updateQty(delta) {
+  quantity = Math.max(1, quantity + delta);
+  document.getElementById('qtyVal').innerText = quantity;
+  calculatePrice();
+}
+
+function calculatePrice() {
+  let unitPrice = 19990;
+  if(quantity >= 31) unitPrice = 14990;
+  else if(quantity >= 11) unitPrice = 16490;
+  else if(quantity >= 6) unitPrice = 17990;
+  
+  document.getElementById('priceTierLabel').innerText = `Precio unitario: $${unitPrice.toLocaleString('es-CL')}`;
+  return unitPrice * quantity;
+}
+
+function updateSummary() {
+  const total = calculatePrice();
+  document.getElementById('sumStyle').innerText = selectedStyle;
+  document.getElementById('sumName').innerText = document.getElementById('formName').value || 'No ingresado';
+  document.getElementById('sumQty').innerText = `${quantity} tarjeta${quantity > 1 ? 's' : ''}`;
+  document.getElementById('sumTotal').innerText = `$${total.toLocaleString('es-CL')}`;
+  
+  // Mensaje WhatsApp
+  const name = document.getElementById('formName').value;
+  const role = document.getElementById('formRole').value;
+  const company = document.getElementById('formCompany').value;
+  const msg = `Hola toca! 👋 Quiero cotizar mi tarjeta:\n\n` +
+              `🎨 Estilo: ${selectedStyle}\n` +
+              `👤 Nombre: ${name}\n` +
+              `💼 Cargo: ${role}\n` +
+              `🏢 Empresa: ${company}\n` +
+              `🔢 Cantidad: ${quantity}\n` +
+              `💰 Total: $${total.toLocaleString('es-CL')}`;
+  
+  const encodedMsg = encodeURIComponent(msg);
+  document.getElementById('whatsappBtn').href = `https://wa.me/569XXXXXXXX?text=${encodedMsg}`;
+}
+
+// Inicializar preselección
+document.querySelector('[data-value="Dark Glass"]').classList.add('selected');
+</script>
+</body></html>
