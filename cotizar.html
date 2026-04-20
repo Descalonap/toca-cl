@@ -552,10 +552,10 @@ function updateQty(delta) {
 }
 
 function calculatePrice() {
-  let unitPrice = 19990;
+  let unitPrice = 22990;
   if(quantity >= 41) unitPrice = 14990;
-  else if(quantity >= 16) unitPrice = 16490;
-  else if(quantity >= 6) unitPrice = 17990;
+  else if(quantity >= 16) unitPrice = 17490;
+  else if(quantity >= 6) unitPrice = 19990;
   
   document.getElementById('priceTierLabel').innerText = `Precio unitario: $${unitPrice.toLocaleString('es-CL')}`;
   return unitPrice * quantity;
