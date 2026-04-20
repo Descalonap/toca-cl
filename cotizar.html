@@ -553,8 +553,8 @@ function updateQty(delta) {
 
 function calculatePrice() {
   let unitPrice = 19990;
-  if(quantity >= 31) unitPrice = 14990;
-  else if(quantity >= 11) unitPrice = 16490;
+  if(quantity >= 41) unitPrice = 14990;
+  else if(quantity >= 16) unitPrice = 16490;
   else if(quantity >= 6) unitPrice = 17990;
   
   document.getElementById('priceTierLabel').innerText = `Precio unitario: $${unitPrice.toLocaleString('es-CL')}`;
