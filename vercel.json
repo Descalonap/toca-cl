@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/cotizar", "destination": "/cotizar.html" },
+    { "source": "/", "destination": "/index_v2.html" }
+  ]
+}

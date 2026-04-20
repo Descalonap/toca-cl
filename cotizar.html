@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cotizar — toca.</title>
+    <title>Cotizar — toca.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Lexend+Mega:wght@800&family=Space+Mono&family=Anton&family=Oswald:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d0020;
@@ -23,6 +24,14 @@ nav{padding:1.25rem 2rem;display:flex;justify-content:space-between;align-items:
 .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:500;text-decoration:none;color:inherit}
 .logo-mark{width:24px;height:24px}
 .logo-dot{color:var(--purple-light)}
+
+/* LOGO PREVIEW */
+#logoPreview {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: none;
+    border-radius: inherit;
+}
 
 /* PROGRESS BAR */
 .progress-container{max-width:600px;margin:2rem auto;padding:0 1.5rem}
@@ -47,10 +56,34 @@ p.step-desc{color:var(--text-muted);font-size:15px;margin-bottom:2rem}
 .style-preview{height:100px;border-radius:8px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500}
 .style-name{font-size:13px;display:block}
 
+/* COLOR PALETTE */
+.palette-container {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+.palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+.color-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+input[type="color"] {
+    height: 44px;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
 /* INPUTS */
 .input-group{margin-bottom:1.5rem}
 label{display:block;font-size:13px;color:var(--text-muted);margin-bottom:6px;font-weight:500}
-input,select,textarea{width:100%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:#fff;font-size:15px;outline:none;transition:border-color 0.2s}
+input,select,textarea{width:100%;padding:14px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:#000;background-color:#fff;font-size:15px;outline:none;transition:border-color 0.2s}
+select option { color: #000; background-color: #fff; }
 input:focus{border-color:var(--purple-light)}
 .input-hint{font-size:11px;color:var(--text-dim);margin-top:4px}
 
@@ -71,6 +104,96 @@ input:focus{border-color:var(--purple-light)}
 .btn-primary:hover{background:#5b1cb8}
 .btn-secondary{background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid var(--border)}
 .btn-whatsapp{background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;gap:10px}
+
+/* LAYOUT REFACTOR */
+.main-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 40px;
+  padding: 0 2rem;
+}
+
+.form-container{max-width: none; margin: 0; padding: 0;}
+
+/* PHONE PREVIEW */
+.preview-sticky {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.phone {
+  width: 320px;
+  height: 640px;
+  background: #000;
+  border-radius: 40px;
+  padding: 12px;
+  border: 4px solid #333;
+  box-shadow: 0 40px 100px rgba(107,33,214,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+}
+
+.p-avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  background: var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  border: 4px solid rgba(255,255,255,0.1);
+}
+
+.p-name { text-align: center; font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.p-role { text-align: center; font-size: 13px; color: var(--purple-light); margin-bottom: 30px; }
+
+.p-links { display: flex; flex-direction: column; gap: 10px; }
+.p-link {
+  height: 50px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.p-save {
+  margin-top: auto;
+  background: var(--purple);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media(max-width:1024px){
+  .main-wrapper { grid-template-columns: 1fr; }
+  .preview-sticky { display: none; }
+}
 
 @media(max-width:480px){
   .styles-selector{grid-template-columns:1fr}
@@ -96,36 +219,62 @@ input:focus{border-color:var(--purple-light)}
   </div>
 </div>
 
-<main class="form-container">
+<div class="main-wrapper">
+  <main class="form-container">
   
   <!-- PASO 1: ESTILO -->
   <div class="step-content active" id="step1">
     <h2>Elige tu estilo</h2>
     <p class="step-desc">Selecciona la personalidad de tu página digital.</p>
-    <div class="styles-selector" id="stylesGrid">
-      <div class="style-option" data-value="Dark Glass" style="--val: #0d0020">
-        <div class="style-preview" style="background:linear-gradient(135deg,#0d0020,#2d0060)">Preview</div>
-        <span class="style-name">Dark Glass</span>
+    <div class="input-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      <div class="input-group">
+      <label>Base del diseño</label>
+      <select id="styleDropdown" onchange="handleStyleChange()">
+        <option value="Dark Glass">Dark Glass</option>
+        <option value="Neobrutalist">Neobrutalist</option>
+        <option value="Japonés">Japonés</option>
+        <option value="Retro Y2K">Retro Y2K</option>
+        <option value="Warm Organic">Warm Organic</option>
+        <option value="Luxury">Luxury</option>
+        <option value="Terminal">Terminal</option>
+      </select>
+      <p class="input-hint">Estos estilos son configuraciones base. Podrás definir detalles específicos (colores exactos de marca, logos adicionales, secciones extra) con nuestro equipo tras recibir tu cotización.</p>
+    </div>
+      <div>
+        <label>Estilo de Fuente</label>
+        <select id="fontDropdown" onchange="handleFontChange()">
+          <option value="'Outfit', sans-serif">Outfit (Moderna)</option>
+          <option value="'Anton', sans-serif">Anton (Impactante)</option>
+          <option value="'Oswald', sans-serif">Oswald (Condensada)</option>
+          <option value="'Lato', sans-serif">Lato (Elegante)</option>
+          <option value="'Montserrat', sans-serif">Montserrat (Geométrica)</option>
+          <option value="'Lora', serif">Lora (Serifa Clásica)</option>
+          <option value="'Space Mono', monospace">Space Mono (Técnica)</option>
+        </select>
       </div>
-      <div class="style-option" data-value="Neobrutalist">
-        <div class="style-preview" style="background:#f7f500;color:#000">Preview</div>
-        <span class="style-name">Neobrutalist</span>
-      </div>
-      <div class="style-option" data-value="Japonés">
-        <div class="style-preview" style="background:#fafaf8;color:#1a1a1a">Preview</div>
-        <span class="style-name">Japonés</span>
-      </div>
-      <div class="style-option" data-value="Retro Y2K">
-        <div class="style-preview" style="background:linear-gradient(160deg,#0a0a2e,#1a0a3e)">Preview</div>
-        <span class="style-name">Retro Y2K</span>
-      </div>
-      <div class="style-option" data-value="Warm Organic">
-        <div class="style-preview" style="background:linear-gradient(160deg,#1c0f00,#3d1f00)">Preview</div>
-        <span class="style-name">Warm Organic</span>
-      </div>
-      <div class="style-option" data-value="Luxury">
-        <div class="style-preview" style="background:#0f0f0f;color:#d4af37">Preview</div>
-        <span class="style-name">Luxury</span>
+    </div>
+
+    <div class="input-group">
+      <label>Tu Logotipo (Logo)</label>
+      <input type="file" id="logoLoader" accept="image/*" style="background: transparent; border: none; padding: 0;">
+      <p class="input-hint">PNG o SVG recomendado para mejor resultado.</p>
+    </div>
+
+    <div class="palette-container">
+      <p class="step-desc" style="margin-bottom: 1rem;">Personaliza tus colores</p>
+      <div class="palette-grid">
+        <div class="color-input-wrapper">
+          <label>Fondo</label>
+          <input type="color" id="colorBg" value="#0d0020" oninput="handleColorChange()">
+        </div>
+        <div class="color-input-wrapper">
+          <label>Acento</label>
+          <input type="color" id="colorAccent" value="#c084fc" oninput="handleColorChange()">
+        </div>
+        <div class="color-input-wrapper">
+          <label>Texto</label>
+          <input type="color" id="colorText" value="#ffffff" oninput="handleColorChange()">
+        </div>
       </div>
     </div>
     <div class="nav-footer">
@@ -156,6 +305,11 @@ input:focus{border-color:var(--purple-light)}
     <div class="input-group">
       <label>Instagram / Otros Links</label>
       <input type="text" id="formLinks" placeholder="@tuusuario o links">
+    </div>
+    <div class="input-group">
+      <label>Observaciones o detalles específicos (Opcional)</label>
+      <textarea id="formDetails" placeholder="Ej: Necesito que incluya un menú de restaurante, o quiero que el fondo sea una foto específica..."></textarea>
+      <p class="input-hint">Cuéntanos cualquier detalle técnico extra que tengas en mente.</p>
     </div>
     <div class="nav-footer">
       <button class="btn btn-secondary" onclick="prevStep()">Atrás</button>
@@ -201,20 +355,170 @@ input:focus{border-color:var(--purple-light)}
     </div>
   </div>
 
-</main>
+  </main>
+
+  <aside class="preview-sticky">
+    <div class="phone">
+      <div class="phone-screen" id="livePreview">
+        <div class="p-avatar" id="pAvatar">
+          <span id="pInitials">MG</span>
+          <img id="logoPreview" src="" alt="logo">
+        </div>
+        <div class="p-name" id="pName">Tu Nombre</div>
+        <div class="p-role" id="pRole">Tu Cargo / Profesión</div>
+        <div class="p-links">
+          <div class="p-link">WhatsApp</div>
+          <div class="p-link">Instagram</div>
+          <div class="p-link">Sitio web</div>
+        </div>
+        <div class="p-save">Guardar contacto</div>
+      </div>
+    </div>
+  </aside>
+</div>
 
 <script>
 let currentStep = 1;
 let selectedStyle = "Dark Glass";
 let quantity = 1;
 
-// Selección de estilo
-document.querySelectorAll('.style-option').forEach(opt => {
-  opt.addEventListener('click', () => {
-    document.querySelectorAll('.style-option').forEach(o => o.classList.remove('selected'));
-    opt.classList.add('selected');
-    selectedStyle = opt.dataset.value;
-  });
+const previewMap = {
+    "Dark Glass": { 
+        bg: "#0d0020", color: "#fff", accent: "#c084fc", 
+        font: "'Outfit', sans-serif", radius: "12px", border: "1px solid rgba(255,255,255,0.1)", shadow: "none" 
+    },
+    "Neobrutalist": { 
+        bg: "#f7f500", color: "#000", accent: "#000", 
+        font: "'Lexend Mega', sans-serif", radius: "0px", border: "3px solid #000", shadow: "8px 8px 0px #000" 
+    },
+    "Japonés": { 
+        bg: "#fafaf8", color: "#1a1a1a", accent: "#555", 
+        font: "'Space Mono', monospace", radius: "4px", border: "1px solid #ddd", shadow: "none" 
+    },
+    "Retro Y2K": { 
+        bg: "#ff00fb", color: "#fff", accent: "#00ffff", 
+        font: "'Outfit', sans-serif", radius: "30px", border: "2px solid #fff", shadow: "0 0 15px #ff00fb" 
+    },
+    "Warm Organic": { 
+        bg: "#fdf8f1", color: "#433a31", accent: "#d97706", 
+        font: "serif", radius: "24px", border: "none", shadow: "0 4px 12px rgba(0,0,0,0.05)" 
+    },
+    "Luxury": { 
+        bg: "#0f0f0f", color: "#d4af37", accent: "#d4af37", 
+        font: "'Playfair Display', serif", radius: "12px", border: "1px solid #d4af37", shadow: "none" 
+    },
+    "Terminal": { 
+        bg: "#0a0a0a", color: "#00ff41", accent: "#00ff41", 
+        font: "'Space Mono', monospace", radius: "0px", border: "1px solid #00ff41", shadow: "none" 
+    },
+    "Corporate": { 
+        bg: "#1e3a8a", color: "#fff", accent: "#60a5fa", 
+        font: "sans-serif", radius: "4px", border: "none", shadow: "none" 
+    },
+    "Playful": { 
+        bg: "#fdf4ff", color: "#1a1a1a", accent: "#d946ef", 
+        font: "'Lexend Mega', sans-serif", radius: "40px", border: "none", shadow: "none" 
+    }
+};
+
+function handleStyleChange() {
+    selectedStyle = document.getElementById('styleDropdown').value;
+    const config = previewMap[selectedStyle];
+    
+    // Auto-update color pickers based on style
+    document.getElementById('colorBg').value = config.bg.startsWith('#') ? config.bg : "#0d0020";
+    document.getElementById('colorText').value = config.color;
+    document.getElementById('colorAccent').value = config.accent;
+    
+    // Auto-update font dropdown
+    document.getElementById('fontDropdown').value = config.font;
+    
+    updateLivePreviewStyle(selectedStyle);
+}
+
+function handleFontChange() {
+    const font = document.getElementById('fontDropdown').value;
+    document.getElementById('livePreview').style.fontFamily = font;
+}
+
+document.getElementById('logoLoader').addEventListener('change', function(e) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        const logoImg = document.getElementById('logoPreview');
+        const initials = document.getElementById('pInitials');
+        logoImg.src = reader.result;
+        logoImg.style.display = 'block';
+        initials.style.display = 'none';
+        
+        // Reset avatar background to subtle color if logo has transparency
+        document.getElementById('pAvatar').style.background = 'rgba(255,255,255,0.05)';
+    }
+    if(e.target.files[0]) reader.readAsDataURL(e.target.files[0]);
+});
+
+function handleColorChange() {
+    const bg = document.getElementById('colorBg').value;
+    const accent = document.getElementById('colorAccent').value;
+    const text = document.getElementById('colorText').value;
+    
+    const screen = document.getElementById('livePreview');
+    screen.style.background = bg;
+    screen.style.color = text;
+    document.getElementById('pRole').style.color = accent;
+    
+    document.querySelectorAll('.p-link, .p-save, #pAvatar').forEach(el => {
+        if(selectedStyle !== "Luxury") el.style.borderColor = accent;
+        if(el.classList.contains('p-save') || el.classList.contains('p-avatar')) {
+             el.style.background = accent;
+        }
+    });
+}
+
+function updateLivePreviewStyle(style) {
+    const config = previewMap[style] || previewMap["Dark Glass"];
+    const screen = document.getElementById('livePreview');
+    const bg = document.getElementById('colorBg').value;
+    const accent = document.getElementById('colorAccent').value;
+    const text = document.getElementById('colorText').value;
+    
+    screen.style.background = bg;
+    screen.style.color = text;
+    screen.style.fontFamily = config.font;
+    
+    document.getElementById('pRole').style.color = accent;
+    
+    document.querySelectorAll('.p-link, .p-save, #pAvatar').forEach(el => {
+        el.style.borderRadius = config.radius;
+        el.style.border = config.border;
+        el.style.boxShadow = config.shadow;
+        
+        if(el.classList.contains('p-save') || el.classList.contains('p-avatar')) {
+             if(style === "Neobrutalist") el.style.background = "#fff";
+             else if(style === "Luxury") el.style.background = "transparent";
+             else el.style.background = accent;
+        }
+    });
+
+    if(style === "Luxury") {
+        document.getElementById('pName').style.fontStyle = "italic";
+        document.getElementById('pName').style.textTransform = "uppercase";
+        document.getElementById('pName').style.letterSpacing = "2px";
+    } else {
+        document.getElementById('pName').style.fontStyle = "normal";
+        document.getElementById('pName').style.textTransform = "none";
+        document.getElementById('pName').style.letterSpacing = "normal";
+    }
+}
+
+// Live text updates
+document.getElementById('formName').addEventListener('input', (e) => {
+    const val = e.target.value || 'Tu Nombre';
+    document.getElementById('pName').innerText = val;
+    document.getElementById('pAvatar').innerText = val.split(' ').map(n => n[0]).join('').toUpperCase().substring(0,2);
+});
+
+document.getElementById('formRole').addEventListener('input', (e) => {
+    document.getElementById('pRole').innerText = e.target.value || 'Tu Cargo / Profesión';
 });
 
 function updateProgress() {
@@ -268,11 +572,13 @@ function updateSummary() {
   const name = document.getElementById('formName').value;
   const role = document.getElementById('formRole').value;
   const company = document.getElementById('formCompany').value;
+  const extraDetails = document.getElementById('formDetails').value || "Ninguna";
   const msg = `Hola toca! 👋 Quiero cotizar mi tarjeta:\n\n` +
               `🎨 Estilo: ${selectedStyle}\n` +
               `👤 Nombre: ${name}\n` +
               `💼 Cargo: ${role}\n` +
               `🏢 Empresa: ${company}\n` +
+              `📝 Detalles: ${extraDetails}\n` +
               `🔢 Cantidad: ${quantity}\n` +
               `💰 Total: $${total.toLocaleString('es-CL')}`;
   

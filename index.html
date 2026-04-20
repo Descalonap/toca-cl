@@ -81,7 +81,7 @@ section{padding:6rem 2rem;position:relative}
 .step p{font-size:14px;color:var(--text-muted);line-height:1.6}
 
 /* BENEFICIOS */
-.benefits{background:linear-gradient(180deg,transparent 0%,rgba(107, 33, 214, 0.08) 50%,transparent 100%)}
+.benefits{background:linear-gradient(180deg,transparent 0%,rgba(107,33,214,0.08) 50%,transparent 100%)}
 .benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:3rem}
 .benefit{display:flex;gap:16px;padding:1.5rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px}
 .benefit-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--purple),#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
@@ -276,18 +276,18 @@ footer{padding:3rem 2rem 2rem;border-top:0.5px solid rgba(255,255,255,0.08);text
       <button class="styles-toggle" onclick="toggleStyles()" id="styles-toggle-btn">Ver los 12 estilos ↓</button>
     </div>
     <div class="styles-grid" id="styles-grid" style="display:none;margin-top:2rem;">
-      <div class="style-card s1" data-style="01_dark_glass.html"><span class="style-num">01</span><span class="style-label">Dark Glass</span></div>
-      <div class="style-card s2" data-style="02_neobrutalist.html"><span class="style-num">02</span><span class="style-label" style="color:#000;">Neobrutalist</span></div>
-      <div class="style-card s3" data-style="03_japanese.html"><span class="style-num">03</span><span class="style-label" style="color:#1a1a1a;">Japonés</span></div>
-      <div class="style-card s4" data-style="04_retro_y2k.html"><span class="style-num">04</span><span class="style-label" style="color:#00ffff;">Retro Y2K</span></div>
-      <div class="style-card s5" data-style="05_warm_organic.html"><span class="style-num">05</span><span class="style-label" style="color:#fef3c7;">Warm Organic</span></div>
-      <div class="style-card s6" data-style="06_corporate.html"><span class="style-num">06</span><span class="style-label">Corporate</span></div>
-      <div class="style-card s7" data-style="07_editorial.html"><span class="style-num">07</span><span class="style-label" style="color:#1a1a1a;font-family:Georgia,serif;font-style:italic;">Editorial</span></div>
-      <div class="style-card s8" data-style="08_glass_light.html"><span class="style-num">08</span><span class="style-label" style="color:#3730a3;">Glass Light</span></div>
-      <div class="style-card s9" data-style="09_terminal.html"><span class="style-num">09</span><span class="style-label">&gt; Terminal</span></div>
-      <div class="style-card s10" data-style="10_luxury.html"><span class="style-num">10</span><span class="style-label" style="letter-spacing:2px;text-transform:uppercase;">Luxury</span></div>
-      <div class="style-card s11" data-style="11_playful.html"><span class="style-num">11</span><span class="style-label" style="color:#1a1a1a;font-weight:700;">★ Playful</span></div>
-      <div class="style-card s12" data-style="12_photography.html"><span class="style-num">12</span><span class="style-label">Fotografía</span></div>
+      <div class="style-card s1"><span class="style-num">01</span><span class="style-label">Dark Glass</span></div>
+      <div class="style-card s2"><span class="style-num">02</span><span class="style-label" style="color:#000;">Neobrutalist</span></div>
+      <div class="style-card s3"><span class="style-num">03</span><span class="style-label" style="color:#1a1a1a;">Japonés</span></div>
+      <div class="style-card s4"><span class="style-num">04</span><span class="style-label" style="color:#00ffff;">Retro Y2K</span></div>
+      <div class="style-card s5"><span class="style-num">05</span><span class="style-label" style="color:#fef3c7;">Warm Organic</span></div>
+      <div class="style-card s6"><span class="style-num">06</span><span class="style-label">Corporate</span></div>
+      <div class="style-card s7"><span class="style-num">07</span><span class="style-label" style="color:#1a1a1a;font-family:Georgia,serif;font-style:italic;">Editorial</span></div>
+      <div class="style-card s8"><span class="style-num">08</span><span class="style-label" style="color:#3730a3;">Glass Light</span></div>
+      <div class="style-card s9"><span class="style-num">09</span><span class="style-label">&gt; Terminal</span></div>
+      <div class="style-card s10"><span class="style-num">10</span><span class="style-label" style="letter-spacing:2px;text-transform:uppercase;">Luxury</span></div>
+      <div class="style-card s11"><span class="style-num">11</span><span class="style-label" style="color:#1a1a1a;font-weight:700;">★ Playful</span></div>
+      <div class="style-card s12"><span class="style-num">12</span><span class="style-label">Fotografía</span></div>
     </div>
     <div class="styles-cta" id="styles-cta" style="display:none;">
       <a href="cotizar.html" class="btn-primary">Elegir mi estilo →</a>
@@ -330,7 +330,8 @@ footer{padding:3rem 2rem 2rem;border-top:0.5px solid rgba(255,255,255,0.08);text
         <ul class="price-features">
           <li>Todo lo anterior</li>
           <li>Descuento por volumen</li>
-          <li>3 modificaciones incluidas <span style="font-size:11px;opacity:0.6;">(vigencia 3 meses)</span></li>
+          <li>3 modificaciones incluidas</li>
+          <li style="font-size:11px;opacity:0.6;">(vigencia 3 meses)</li>
         </ul>
       </div>
       <div class="price-card">
@@ -338,7 +339,6 @@ footer{padding:3rem 2rem 2rem;border-top:0.5px solid rgba(255,255,255,0.08);text
         <div class="price-num"><span class="currency">$</span>14.990</div>
         <div class="price-unit">c/u · IVA incluido</div>
         <ul class="price-features">
-          <li>Todo lo anterior</li>
           <li>Mejor precio disponible</li>
           <li>Ideal para empresas</li>
           <li>Identidad corporativa</li>
@@ -411,8 +411,7 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 });
 document.querySelectorAll('.style-card').forEach(card=>{
   card.addEventListener('click',()=>{
-    const style = card.getAttribute('data-style');
-    window.location.href='cotizar.html?style=' + style;
+    window.location.href='#cotizar';
   });
 });
 function toggleStyles(){
