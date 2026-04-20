@@ -94,7 +94,21 @@ input:focus{border-color:var(--purple-light)}
 .qty-num{font-size:32px;font-weight:700;width:80px;text-align:center;background:transparent;border:none;color:#fff;outline:none}
 .qty-num::-webkit-inner-spin-button, .qty-num::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
-/* SUMMARY */
+/* ACCESSORIES */
+.acc-selector {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px dashed var(--border);
+    border-radius: 20px;
+}
+.acc-title { font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--purple-light); }
+.acc-row { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.acc-info { flex: 1; }
+.acc-info p { font-size: 12px; color: var(--text-muted); margin: 0; }
+.qty-mini { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 12px; }
+.qty-mini button { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 0 5px; }
+.qty-mini input { width: 40px; text-align: center; background: transparent; border: none; color: #fff; font-weight: 600; outline: none; }
 .summary-card{background:linear-gradient(180deg,rgba(107,33,214,0.15),rgba(107,33,214,0.05));border:1.5px solid var(--purple);border-radius:20px;padding:2rem}
 .summary-row{display:flex;justify-content:space-between;margin-bottom:12px;font-size:15px}
 .total-row{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);font-size:24px;font-weight:600}
@@ -328,6 +342,20 @@ input:focus{border-color:var(--purple-light)}
       <input type="number" class="qty-num" id="qtyVal" value="1" min="1" oninput="handleManualQty(this)">
       <button class="qty-btn" onclick="updateQty(1)">+</button>
     </div>
+
+    <div class="acc-selector">
+        <div class="acc-row">
+            <div class="acc-info">
+                <div class="acc-title">Lanyards + Portacredenciales</div>
+                <p>Opcional: $3.000 adicionales por unidad.</p>
+            </div>
+            <div class="qty-mini">
+                <button onclick="updateAcc(-1)">-</button>
+                <input type="number" id="accVal" value="0" min="0" oninput="handleManualAcc(this)">
+                <button onclick="updateAcc(1)">+</button>
+            </div>
+        </div>
+    </div>
     <div style="margin-top:20px">
       <div class="summary-row" style="color:var(--purple-light); font-weight:500;">
         <span id="priceTierLabel">Precio unitario: $19.990</span>
@@ -346,7 +374,8 @@ input:focus{border-color:var(--purple-light)}
     <div class="summary-card">
       <div class="summary-row"><span>Estilo elegido:</span><span id="sumStyle">Dark Glass</span></div>
       <div class="summary-row"><span>Nombre:</span><span id="sumName">-</span></div>
-      <div class="summary-row"><span>Cantidad:</span><span id="sumQty">1 tarjeta</span></div>
+      <div class="summary-row"><span>Tarjetas:</span><span id="sumQty">1 tarjeta</span></div>
+      <div class="summary-row" id="sumAccRow" style="display:none"><span>Lanyards:</span><span id="sumAccQty">0</span></div>
       <div class="total-row"><span>Total:</span><span id="sumTotal">$19.990</span></div>
     </div>
     <div class="nav-footer">
@@ -383,6 +412,7 @@ input:focus{border-color:var(--purple-light)}
 let currentStep = 1;
 let selectedStyle = "Dark Glass";
 let quantity = 1;
+let lanyardQty = 0;
 
 const previewMap = {
     "Dark Glass": { 
@@ -550,6 +580,11 @@ function prevStep() {
 function updateQty(delta) {
   quantity = Math.max(1, quantity + delta);
   document.getElementById('qtyVal').value = quantity;
+  // Lanyard qty cannot be more than total cards
+  if(lanyardQty > quantity) {
+      lanyardQty = quantity;
+      document.getElementById('accVal').value = lanyardQty;
+  }
   calculatePrice();
 }
 
@@ -557,6 +592,25 @@ function handleManualQty(input) {
     let val = parseInt(input.value);
     if(isNaN(val) || val < 1) val = 1;
     quantity = val;
+    if(lanyardQty > quantity) {
+        lanyardQty = quantity;
+        document.getElementById('accVal').value = lanyardQty;
+    }
+    calculatePrice();
+}
+
+function updateAcc(delta) {
+    lanyardQty = Math.max(0, Math.min(quantity, lanyardQty + delta));
+    document.getElementById('accVal').value = lanyardQty;
+    calculatePrice();
+}
+
+function handleManualAcc(input) {
+    let val = parseInt(input.value);
+    if(isNaN(val) || val < 0) val = 0;
+    if(val > quantity) val = quantity;
+    lanyardQty = val;
+    input.value = lanyardQty;
     calculatePrice();
 }
 
@@ -566,8 +620,11 @@ function calculatePrice() {
   else if(quantity >= 16) unitPrice = 17490;
   else if(quantity >= 6) unitPrice = 19990;
   
+  const accTotal = lanyardQty * 3000;
+  const cardsTotal = unitPrice * quantity;
+  
   document.getElementById('priceTierLabel').innerText = `Precio unitario: $${unitPrice.toLocaleString('es-CL')}`;
-  return unitPrice * quantity;
+  return cardsTotal + accTotal;
 }
 
 function updateSummary() {
@@ -575,6 +632,14 @@ function updateSummary() {
   document.getElementById('sumStyle').innerText = selectedStyle;
   document.getElementById('sumName').innerText = document.getElementById('formName').value || 'No ingresado';
   document.getElementById('sumQty').innerText = `${quantity} tarjeta${quantity > 1 ? 's' : ''}`;
+  
+  if(lanyardQty > 0) {
+      document.getElementById('sumAccRow').style.display = 'flex';
+      document.getElementById('sumAccQty').innerText = `${lanyardQty} unidad${lanyardQty > 1 ? 'es' : ''}`;
+  } else {
+      document.getElementById('sumAccRow').style.display = 'none';
+  }
+  
   document.getElementById('sumTotal').innerText = `$${total.toLocaleString('es-CL')}`;
   
   // Mensaje WhatsApp
@@ -582,17 +647,23 @@ function updateSummary() {
   const role = document.getElementById('formRole').value;
   const company = document.getElementById('formCompany').value;
   const extraDetails = document.getElementById('formDetails').value || "Ninguna";
-  const msg = `Hola toca! 👋 Quiero cotizar mi tarjeta:\n\n` +
+  
+  let msg = `Hola toca! 👋 Quiero cotizar mi tarjeta:\n\n` +
               `🎨 Estilo: ${selectedStyle}\n` +
               `👤 Nombre: ${name}\n` +
               `💼 Cargo: ${role}\n` +
               `🏢 Empresa: ${company}\n` +
               `📝 Detalles: ${extraDetails}\n` +
-              `🔢 Cantidad: ${quantity}\n` +
-              `💰 Total: $${total.toLocaleString('es-CL')}`;
+              `🔢 Cantidad: ${quantity} tarjetas\n`;
+              
+  if(lanyardQty > 0) {
+      msg += `🎫 Lanyards: ${lanyardQty} unidades (+ $${(lanyardQty*3000).toLocaleString('es-CL')})\n`;
+  }
+              
+  msg += `💰 Total: $${total.toLocaleString('es-CL')}`;
   
-  const encodedMsg = encodeURIComponent(msg);
-  document.getElementById('whatsappBtn').href = `https://wa.me/569XXXXXXXX?text=${encodedMsg}`;
+  const wpUrl = `https://wa.me/56930805315?text=${encodeURIComponent(msg)}`;
+  document.getElementById('whatsappBtn').href = wpUrl;
 }
 
 // Inicializar preselección
