@@ -208,7 +208,40 @@ input:focus{border-color:var(--purple-light)}
 
 @media(max-width:1024px){
   .main-wrapper { grid-template-columns: 1fr; }
-  .preview-sticky { display: none; }
+  .preview-sticky { 
+    position: fixed;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+  }
+  .preview-sticky.active {
+    transform: translateY(-100%);
+  }
+  .preview-close {
+    display: block !important;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1001;
+  }
+  .preview-toggle-mobile {
+    display: flex !important;
+  }
 }
 
 @media(max-width:480px){
@@ -388,7 +421,8 @@ input:focus{border-color:var(--purple-light)}
 
   </main>
 
-  <aside class="preview-sticky">
+  <aside class="preview-sticky" id="mobilePreviewContainer">
+    <button class="preview-close" style="display:none" onclick="toggleMobilePreview()">✕</button>
     <div class="phone">
       <div class="phone-screen" id="livePreview">
         <div class="p-avatar" id="pAvatar">
@@ -407,6 +441,12 @@ input:focus{border-color:var(--purple-light)}
     </div>
   </aside>
 </div>
+
+<!-- Floating Toggle for Mobile -->
+<button class="preview-toggle-mobile" id="previewToggle" style="display:none; position:fixed; bottom:20px; right:20px; z-index:999; background:var(--purple); color:#fff; border:none; padding:12px 20px; border-radius:30px; font-weight:600; box-shadow:0 10px 30px rgba(107,33,214,0.4); align-items:center; gap:10px;" onclick="toggleMobilePreview()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+    Ver Preview
+</button>
 
 <script>
 let currentStep = 1;
@@ -552,6 +592,11 @@ document.getElementById('formName').addEventListener('input', (e) => {
 document.getElementById('formRole').addEventListener('input', (e) => {
     document.getElementById('pRole').innerText = e.target.value || 'Tu Cargo / Profesión';
 });
+
+function toggleMobilePreview() {
+    const container = document.getElementById('mobilePreviewContainer');
+    container.classList.toggle('active');
+}
 
 function updateProgress() {
   const progress = ((currentStep - 1) / 3) * 100 + 25;
