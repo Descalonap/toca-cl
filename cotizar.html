@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizar — toca.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Lexend+Mega:wght@800&family=Space+Mono&family=Anton&family=Oswald:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Lexend:wght@400;800&family=Space+Mono&family=Anton&family=Oswald:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Lora:ital,wght@0,700;1,700&family=Inter:wght@400;700&family=Work+Sans:wght@400;700&family=Fira+Sans:wght@400;700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d0020;
@@ -108,7 +108,8 @@ input:focus{border-color:var(--purple-light)}
 .acc-info p { font-size: 12px; color: var(--text-muted); margin: 0; }
 .qty-mini { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 12px; }
 .qty-mini button { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 0 5px; }
-.qty-mini input { width: 40px; text-align: center; background: transparent; border: none; color: #fff; font-weight: 600; outline: none; }
+.qty-mini input { width: 60px; text-align: center; background: transparent; border: none; color: #fff; font-weight: 600; outline: none; }
+.qty-mini input::-webkit-inner-spin-button, .qty-mini input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .summary-card{background:linear-gradient(180deg,rgba(107,33,214,0.15),rgba(107,33,214,0.05));border:1.5px solid var(--purple);border-radius:20px;padding:2rem}
 .summary-row{display:flex;justify-content:space-between;margin-bottom:12px;font-size:15px}
 .total-row{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);font-size:24px;font-weight:600}
@@ -206,6 +207,25 @@ input:focus{border-color:var(--purple-light)}
   font-weight: 600;
 }
 
+/* ANIMATIONS */
+@keyframes bgMove {
+    from { background-position: 0 0; }
+    to { background-position: 100px 100px; }
+}
+.animated-bg {
+    animation: bgMove 4s linear infinite !important;
+}
+
+@keyframes liquidAnim {
+    0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; filter: hue-rotate(360deg); }
+}
+.liquid-anim {
+    background-size: 200% 200% !important;
+    animation: liquidAnim 15s ease infinite !important;
+}
+
 @media(max-width:1024px){
   .main-wrapper { grid-template-columns: 1fr; }
   .preview-sticky { 
@@ -286,6 +306,11 @@ input:focus{border-color:var(--purple-light)}
         <option value="Warm Organic">Warm Organic</option>
         <option value="Luxury">Luxury</option>
         <option value="Terminal">Terminal</option>
+        <option value="Corporate">Corporate</option>
+        <option value="Playful">Playful</option>
+        <option value="Editorial">Editorial</option>
+        <option value="Cyberpunk">Cyberpunk</option>
+        <option value="Minimal Mono">Minimal Mono</option>
       </select>
       <p class="input-hint">Estos estilos son configuraciones base. Podrás definir detalles específicos (colores exactos de marca, logos adicionales, secciones extra) con nuestro equipo tras recibir tu cotización.</p>
     </div>
@@ -293,13 +318,48 @@ input:focus{border-color:var(--purple-light)}
         <label>Estilo de Fuente</label>
         <select id="fontDropdown" onchange="handleFontChange()">
           <option value="'Outfit', sans-serif">Outfit (Moderna)</option>
-          <option value="'Anton', sans-serif">Anton (Impactante)</option>
-          <option value="'Oswald', sans-serif">Oswald (Condensada)</option>
-          <option value="'Lato', sans-serif">Lato (Elegante)</option>
+          <option value="'Inter', sans-serif">Inter (Standard UI)</option>
           <option value="'Montserrat', sans-serif">Montserrat (Geométrica)</option>
-          <option value="'Lora', serif">Lora (Serifa Clásica)</option>
-          <option value="'Space Mono', monospace">Space Mono (Técnica)</option>
+          <option value="'Lexend', sans-serif">Lexend (Lectura)</option>
+          <option value="'Work Sans', sans-serif">Work Sans (Corporativa)</option>
+          <option value="'Fira Sans', sans-serif">Fira Sans (Tech)</option>
+          <option value="'Bebas Neue', sans-serif">Bebas Neue (Impacto)</option>
+          <option value="'Anton', sans-serif">Anton (Poster)</option>
+          <option value="'Oswald', sans-serif">Oswald (Condensada)</option>
+          <option value="'Space Mono', monospace">Space Mono (Código)</option>
+          <option value="'JetBrains Mono', monospace">JetBrains Mono (Ingeniería)</option>
+          <option value="'Playfair Display', serif">Playfair Display (Elegante)</option>
+          <option value="'Lora', serif">Lora (Editorial)</option>
+          <option value="'Cormorant Garamond', serif">Cormorant (Clásica)</option>
+          <option value="'Lato', sans-serif">Lato (Suave)</option>
         </select>
+      </div>
+    </div>
+
+    <div class="input-group" style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px; align-items: end;">
+      <div>
+        <label>Textura de Fondo</label>
+        <select id="bgTextureDropdown" onchange="handleColorChange()">
+          <option value="none">Ninguna (Sólido)</option>
+          <option value="grid">Grilla Principal (50px)</option>
+          <option value="smallGrid">Grilla Técnica (10px)</option>
+          <option value="dots">Matriz de Puntos</option>
+          <option value="bigDots">Puntos Focales</option>
+          <option value="carbon">Fibra de Carbono</option>
+          <option value="stripes">Líneas Diagonales</option>
+          <option value="zigzag">Patrón ZigZag</option>
+          <option value="hex">Celdas Hexágono</option>
+          <option value="blueprint">Blueprint (Cian)</option>
+          <option value="noise">Ruido Premium</option>
+          <option value="topography">Topografía sutil</option>
+          <option value="liquid">Liquid Mesh (Premium)</option>
+        </select>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer;">
+          <input type="checkbox" id="animToggle" onchange="handleColorChange()" style="width: 18px; height: 18px; cursor: pointer;">
+          Animar
+        </label>
       </div>
     </div>
 
@@ -461,7 +521,7 @@ const previewMap = {
     },
     "Neobrutalist": { 
         bg: "#f7f500", color: "#000", accent: "#000", 
-        font: "'Lexend Mega', sans-serif", radius: "0px", border: "3px solid #000", shadow: "8px 8px 0px #000" 
+        font: "'Lexend', sans-serif", radius: "0px", border: "3px solid #000", shadow: "8px 8px 0px #000" 
     },
     "Japonés": { 
         bg: "#fafaf8", color: "#1a1a1a", accent: "#555", 
@@ -469,11 +529,11 @@ const previewMap = {
     },
     "Retro Y2K": { 
         bg: "#ff00fb", color: "#fff", accent: "#00ffff", 
-        font: "'Outfit', sans-serif", radius: "30px", border: "2px solid #fff", shadow: "0 0 15px #ff00fb" 
+        font: "'Inter', sans-serif", radius: "30px", border: "2px solid #fff", shadow: "0 0 15px #ff00fb" 
     },
     "Warm Organic": { 
         bg: "#fdf8f1", color: "#433a31", accent: "#d97706", 
-        font: "serif", radius: "24px", border: "none", shadow: "0 4px 12px rgba(0,0,0,0.05)" 
+        font: "'Cormorant Garamond', serif", radius: "24px", border: "none", shadow: "0 4px 12px rgba(0,0,0,0.05)" 
     },
     "Luxury": { 
         bg: "#0f0f0f", color: "#d4af37", accent: "#d4af37", 
@@ -481,15 +541,27 @@ const previewMap = {
     },
     "Terminal": { 
         bg: "#0a0a0a", color: "#00ff41", accent: "#00ff41", 
-        font: "'Space Mono', monospace", radius: "0px", border: "1px solid #00ff41", shadow: "none" 
+        font: "'JetBrains Mono', monospace", radius: "0px", border: "1px solid #00ff41", shadow: "none" 
     },
     "Corporate": { 
         bg: "#1e3a8a", color: "#fff", accent: "#60a5fa", 
-        font: "sans-serif", radius: "4px", border: "none", shadow: "none" 
+        font: "'Work Sans', sans-serif", radius: "4px", border: "none", shadow: "none" 
     },
     "Playful": { 
         bg: "#fdf4ff", color: "#1a1a1a", accent: "#d946ef", 
-        font: "'Lexend Mega', sans-serif", radius: "40px", border: "none", shadow: "none" 
+        font: "'Montserrat', sans-serif", radius: "40px", border: "none", shadow: "none" 
+    },
+    "Editorial": { 
+        bg: "#ffffff", color: "#1a1a1a", accent: "#000000", 
+        font: "'Lora', serif", radius: "0px", border: "none", shadow: "none" 
+    },
+    "Cyberpunk": { 
+        bg: "#050505", color: "#00ffcc", accent: "#ff00ff", 
+        font: "'Fira Sans', sans-serif", radius: "0px", border: "2px solid #00ffcc", shadow: "0 0 10px #00ffcc" 
+    },
+    "Minimal Mono": { 
+        bg: "#ffffff", color: "#000000", accent: "#000000", 
+        font: "'Inter', sans-serif", radius: "0px", border: "1px solid #000", shadow: "none" 
     }
 };
 
@@ -532,9 +604,70 @@ function handleColorChange() {
     const bg = document.getElementById('colorBg').value;
     const accent = document.getElementById('colorAccent').value;
     const text = document.getElementById('colorText').value;
+    const texture = document.getElementById('bgTextureDropdown').value;
+    const isAnimated = document.getElementById('animToggle').checked;
     
+    // Función para detectar si el color es claro u oscuro
+    const hex = bg.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    const lineOpacity = brightness > 128 ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)';
+    const strongLineOpacity = brightness > 128 ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.15)';
+
     const screen = document.getElementById('livePreview');
-    screen.style.background = bg;
+    
+    // Base background color
+    screen.style.backgroundColor = bg;
+    screen.style.backgroundImage = 'none';
+    screen.classList.remove('animated-bg');
+    screen.classList.remove('liquid-anim');
+    screen.style.filter = 'none';
+
+    // Apply textures with adaptive color
+    if(texture === 'grid') {
+        screen.style.backgroundImage = `linear-gradient(${lineOpacity} 1px, transparent 1px), linear-gradient(90deg, ${lineOpacity} 1px, transparent 1px)`;
+        screen.style.backgroundSize = '50px 50px';
+    } else if(texture === 'smallGrid') {
+        screen.style.backgroundImage = `linear-gradient(${lineOpacity} 1px, transparent 1px), linear-gradient(90deg, ${lineOpacity} 1px, transparent 1px)`;
+        screen.style.backgroundSize = '10px 10px';
+    } else if(texture === 'dots') {
+        screen.style.backgroundImage = `radial-gradient(${strongLineOpacity} 1.5px, transparent 1.5px)`;
+        screen.style.backgroundSize = '20px 20px';
+    } else if(texture === 'bigDots') {
+        screen.style.backgroundImage = `radial-gradient(${strongLineOpacity} 3px, transparent 3px)`;
+        screen.style.backgroundSize = '50px 50px';
+    } else if(texture === 'carbon') {
+        screen.style.backgroundImage = `repeating-linear-gradient(45deg, ${lineOpacity} 0, ${lineOpacity} 1px, transparent 0, transparent 50%)`;
+        screen.style.backgroundSize = '12px 12px';
+    } else if(texture === 'stripes') {
+        screen.style.backgroundImage = `linear-gradient(45deg, ${lineOpacity} 25%, transparent 25%, transparent 50%, ${lineOpacity} 50%, ${lineOpacity} 75%, transparent 75%, transparent)`;
+        screen.style.backgroundSize = '40px 40px';
+    } else if(texture === 'zigzag') {
+        screen.style.backgroundImage = `linear-gradient(135deg, ${lineOpacity} 25%, transparent 25%), linear-gradient(225deg, ${lineOpacity} 25%, transparent 25%), linear-gradient(45deg, ${lineOpacity} 25%, transparent 25%), linear-gradient(315deg, ${lineOpacity} 25%, transparent 25%)`;
+        screen.style.backgroundSize = '40px 40px';
+    } else if(texture === 'hex') {
+        screen.style.backgroundImage = `url("https://www.transparenttextures.com/patterns/carbon-fibre.png")`;
+        screen.style.backgroundSize = '20px 20px';
+        if(brightness > 128) screen.style.filter = 'invert(1)';
+    } else if(texture === 'blueprint') {
+        screen.style.backgroundColor = brightness > 128 ? '#e6f3ff' : '#003366';
+        const blueprintLine = brightness > 128 ? 'rgba(0,102,204,0.2)' : 'rgba(255,255,255,0.2)';
+        screen.style.backgroundImage = `linear-gradient(${blueprintLine} 1px, transparent 1px), linear-gradient(90deg, ${blueprintLine} 1px, transparent 1px)`;
+        screen.style.backgroundSize = '100px 100px';
+    } else if(texture === 'noise') {
+        screen.style.backgroundImage = `url("https://www.transparenttextures.com/patterns/stardust.png")`;
+        if(brightness > 128) screen.style.filter = 'invert(0.1)';
+    } else if(texture === 'liquid') {
+        screen.style.backgroundImage = `radial-gradient(at 0% 0%, ${accent} 0px, transparent 50%), radial-gradient(at 100% 100%, ${bg} 0px, transparent 50%), radial-gradient(at 100% 0%, ${accent} 0px, transparent 50%)`;
+        screen.classList.add('liquid-anim');
+    }
+
+    if(isAnimated && texture !== 'none' && texture !== 'liquid') {
+        screen.classList.add('animated-bg');
+    }
+
     screen.style.color = text;
     document.getElementById('pRole').style.color = accent;
     
@@ -553,10 +686,24 @@ function updateLivePreviewStyle(style) {
     const accent = document.getElementById('colorAccent').value;
     const text = document.getElementById('colorText').value;
     
-    screen.style.background = bg;
+    screen.style.backgroundColor = bg;
+    screen.style.backgroundImage = 'none';
     screen.style.color = text;
     screen.style.fontFamily = config.font;
     
+    // Mantener la textura si existe
+    const texture = document.getElementById('bgTextureDropdown').value;
+    if(texture === 'grid') {
+        screen.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`;
+        screen.style.backgroundSize = '20px 20px';
+    } else if(texture === 'dots') {
+        screen.style.backgroundImage = `radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px)`;
+        screen.style.backgroundSize = '15px 15px';
+    } else if(texture === 'carbon') {
+        screen.style.backgroundImage = `repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 0, transparent 50%)`;
+        screen.style.backgroundSize = '10px 10px';
+    }
+
     document.getElementById('pRole').style.color = accent;
     
     document.querySelectorAll('.p-link, .p-save, #pAvatar').forEach(el => {
@@ -704,10 +851,14 @@ function updateSummary() {
   if(lanyardQty > 0) {
       msg += `🎫 Lanyards: ${lanyardQty} unidades (+ $${(lanyardQty*3000).toLocaleString('es-CL')})\n`;
   }
-              
+  
+  const texture = document.getElementById('bgTextureDropdown').value;
+  if(texture !== 'none') {
+      msg += `🎨 Textura: ${texture}\n`;
+  }
   msg += `💰 Total: $${total.toLocaleString('es-CL')}`;
   
-  const wpUrl = `https://wa.me/56930805315?text=${encodeURIComponent(msg)}`;
+  const wpUrl = `https://wa.me/56968704071?text=${encodeURIComponent(msg)}`;
   document.getElementById('whatsappBtn').href = wpUrl;
 }
 
