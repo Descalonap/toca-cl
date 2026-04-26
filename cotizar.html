@@ -107,8 +107,8 @@ input:focus{border-color:var(--purple-light)}
 .acc-info { flex: 1; }
 .acc-info p { font-size: 12px; color: var(--text-muted); margin: 0; }
 .qty-mini { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 12px; }
-.qty-mini button { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 0 5px; }
-.qty-mini input { width: 60px; text-align: center; background: transparent; border: none; color: #fff; font-weight: 600; outline: none; }
+.qty-mini button { background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 22px; cursor: pointer; padding: 5px 12px; display: flex; align-items: center; justify-content: center; }
+.qty-mini input { width: 50px; text-align: center; background: transparent; border: none; color: #fff; font-weight: 700; font-size: 18px; outline: none; }
 .qty-mini input::-webkit-inner-spin-button, .qty-mini input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .summary-card{background:linear-gradient(180deg,rgba(107,33,214,0.15),rgba(107,33,214,0.05));border:1.5px solid var(--purple);border-radius:20px;padding:2rem}
 .summary-row{display:flex;justify-content:space-between;margin-bottom:12px;font-size:15px}
@@ -503,8 +503,8 @@ input:focus{border-color:var(--purple-light)}
 </div>
 
 <!-- Floating Toggle for Mobile -->
-<button class="preview-toggle-mobile" id="previewToggle" style="display:none; position:fixed; bottom:20px; right:20px; z-index:999; background:var(--purple); color:#fff; border:none; padding:12px 20px; border-radius:30px; font-weight:600; box-shadow:0 10px 30px rgba(107,33,214,0.4); align-items:center; gap:10px;" onclick="toggleMobilePreview()">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+<button class="preview-toggle-mobile" id="previewToggle" style="display:none; position:fixed; top:100px; right:20px; z-index:999; background:var(--purple); color:#fff; border:none; padding:10px 16px; border-radius:30px; font-weight:600; box-shadow:0 10px 30px rgba(107,33,214,0.4); align-items:center; gap:8px; font-size:13px;" onclick="toggleMobilePreview()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
     Ver Preview
 </button>
 
